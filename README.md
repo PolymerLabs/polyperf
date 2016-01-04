@@ -7,7 +7,7 @@ Each test page should include
 ```html
 <script src="perf-lib/perf.js"></script>
 ```
-and call 
+and call
 
 ```html
 <script>
@@ -25,4 +25,4 @@ console.perfEnd();
 
 after code to test.
 
-Note, harness itself usesnacent precursor to Polymer 1.0 and hasn't been updated, so it is included inline.  This has no bearing to the webpage under test.
+Note, harness itself uses nacent precursor to Polymer 1.0 and hasn't been updated, so it is included inline.  This has no bearing on the webpage under test.
