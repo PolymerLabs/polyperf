@@ -1,0 +1,27 @@
+{
+  "name": "polyperf",
+  "version": "0.0.1",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/util/",
+    "/explainer/",
+    "/bower_components/",
+    "gulpfile.js",
+    "PRIMER.md",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md"
+  ],
+  "authors": [
+    "The Polymer Authors (http://polymer.github.io/AUTHORS.txt)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PolymerLabs/polyperf.git"
+  },
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0"
+  },
+  "private": true
+}
