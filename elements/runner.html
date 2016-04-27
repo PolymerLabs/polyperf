@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../perf-lib/frame-tester.html">
+	<style>
+    summary {
+      font-family: sans-serif;
+      font-size: 1.5em;
+    }
+  </style>
+
+</head>
+<body>
+
+  <summary>Element Tester</summary>
+
+  <frame-tester runs="25"></frame-tester>
+
+  <script>
+  addEventListener('WebComponentsReady', function() {
+    document.querySelector('frame-tester').tests = [
+      'tests/span.html',
+      'tests/div.html',
+      'tests/input.html',
+      'tests/custom-element.html',
+      'tests/polymer-element.html',
+      'tests/polymer-content-element.html'
+    ];
+  });
+  </script>
+
+</body>
+</html>
