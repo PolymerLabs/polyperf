@@ -20,10 +20,12 @@
   <frame-tester runs="25"></frame-tester>
 
   <script>
+  addEventListener('WebComponentsReady', function() {
     document.querySelector('frame-tester').tests = [
       'test1.html',
       'test2.html'
     ];
+  });
   </script>
 
 </body>

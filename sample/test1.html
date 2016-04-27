@@ -13,35 +13,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <head>
   <script src="../perf-lib/perf.js"></script>
   <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="../bower_components/polymer/polymer.html">
+  <link rel="import" href="elements/test1-element.html">
 </head>
 
 <body>
-
-  <dom-module id="x-test">
-    <style>
-    </style>
-    <template>
-      Test Element
-    </template>
-  </dom-module>
-
-  <script>
-    Polymer({
-      is: 'x-test',
-      ready: function() {
-        for (var i=0; i<10000; i++) {
-          this.fire('foo-bar');
-        }
-      }
-    });
-  </script>
 
   <script>
     console.perf();
   </script>
 
-  <x-test></x-test>
+  <test1-element></test1-element>
 
   <script>
     console.perfEnd();

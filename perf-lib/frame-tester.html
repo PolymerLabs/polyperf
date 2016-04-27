@@ -1,16 +1,11 @@
-<link rel="import" href="components/polymer/polymer.html">
-
-<template>
-
   <style>
 
-    :host {
+    frame-tester {
       display: block;
       font-family: sans-serif;
-      font-size: 1.4em;
     }
 
-    iframe {
+    frame-tester iframe {
       position: absolute;
       border: 0;
       width: 1920px;
@@ -19,7 +14,7 @@
       xdisplay: none;
     }
 
-    o, n {
+    frame-tester o, frame-tester n {
       display: inline-block;
       xwidth: 24px;
       margin: 2px;
@@ -27,11 +22,11 @@
       font-family: monospace;
     }
 
-    o {
+    frame-tester o {
       color: rgba(255, 0, 0, 0.5);
     }
 
-    n {
+    frame-tester n {
       display: inline-block;
       color: green;
       font-weight: bold;
@@ -39,49 +34,54 @@
 
   </style>
 
-  <div></div>
+<template>
+
+  <div id="log"></div>
 
   <iframe id="frame"></iframe>
 
 </template><script>
+(function() {
 
-  Polymer({
+  var proto = Object.create(HTMLElement.prototype);
 
-    name: 'frame-tester',
-    base: '',
-    runs: 25,
+  proto._template = document._currentScript.ownerDocument.querySelector('template');
 
-    published: [
-      'tests'
-    ],
+  proto.createdCallback = function() {
+    this.appendChild(document.importNode(this._template.content, true));
+    this.frame = this.querySelector('#frame');
+    this.log = this.querySelector('#log');
+    this.strategy = this.strategies.minimum;
+    this.attributeChangedCallback('runs', null, this.getAttribute('runs') || 25);
+    this.attributeChangedCallback('base', null, this.getAttribute('base') || '');
+    window.addEventListener('message', this.scoreMessage.bind(this));
+  }
 
-    created: function() {
-      this.frame = this.$('#frame');
-      this.strategy = this.strategies.minimum;
-      this.attributeChangedCallback('runs');
-      this.attributeChangedCallback('base');
-      addEventListener('message', this.scoreMessage.bind(this));
+  proto.attributeChangedCallback = function(name, old, value) {
+    switch(name) {
+      case 'runs':
+        this.runs = value;
+        break;
+      case 'base':
+        this.base = value;
+        break;
+      case 'strategy':
+        this.strategy = this.strategies[strategy] || this.strategy;
+        break;
+    }
+  };
+
+  var testing = {
+
+    get tests() {
+      return this._tests;
     },
 
-    attributeChangedCallback: function(name) {
-      var value = this.getAttribute(name);
-      switch(name) {
-        case 'runs':
-          this.runs = value || this.runs;
-          break;
-        case 'base':
-          this.base = value || this.base;
-          break;
-        case 'strategy':
-          this.strategy = this.strategies[strategy] || this.strategy;
-          break;
-      }
-    },
-
-    testsChanged: function() {
+    set tests(value) {
+      this._tests = value;
       this.go();
     },
-
+    
     shuffle: function(tests) {
       var shuffled = [];
       var ordered = tests.slice(0);
@@ -126,7 +126,7 @@
           this.startRun();
         } else {
           // all done!
-          this.fire('done');
+          this.dispatchEvent(new CustomEvent('done'));
         }
         return;
       }
@@ -195,7 +195,7 @@
         info += '<hr>';
       }
       //
-      this.$('div').innerHTML = info;
+      this.log.innerHTML = info;
     },
 
     stats: function(a) {
@@ -247,6 +247,14 @@
       }
 
     }
-  });
 
+  };
+
+  for (var i in testing) {
+    Object.defineProperty(proto, i, Object.getOwnPropertyDescriptor(testing, i));
+  }
+
+  document.registerElement('frame-tester', {prototype: proto});
+
+})();
 </script>
