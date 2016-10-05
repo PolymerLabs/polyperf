@@ -21,7 +21,8 @@
     "url": "https://github.com/PolymerLabs/polyperf.git"
   },
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0"
+    "polymer": "Polymer/polymer#^1.7",
+    "paper-ripple": "PolymerElements/paper-ripple"
   },
   "private": true
 }

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../perf-lib/frame-tester.html">
+  <title>polyperf</title>
+	<style>
+    body {
+      background: #E0F7FA;
+    }
+
+    summary {
+      font-family: sans-serif;
+      font-size: 1.5em;
+    }
+  </style>
+
+</head>
+<body>
+
+  <summary>polyperf</summary>
+
+  <frame-tester></frame-tester>
+
+  <script>
+  addEventListener('WebComponentsReady', function() {
+    document.querySelector('frame-tester').tests = [
+      'harness.html?wc-element=input',
+      'harness.html?wc-element=ratings-element&wc-path=ratings-element/ratings-element-start.html',
+      'harness.html?wc-element=ratings-element&wc-path=ratings-element/ratings-element2-no-card.html',
+      'harness.html?wc-element=ratings-element&wc-path=ratings-element/ratings-element3-lazy-ripple.html',
+      'harness.html?wc-element=ratings-element&wc-path=ratings-element/ratings-element4-css.html',
+      'harness.html?wc-element=ratings-element&wc-path=ratings-element/ratings-element5-default.html',
+      'harness.html?wc-element=ratings-element&wc-path=ratings-element/ratings-element6-afterNextRender-end.html'
+    ];
+  });
+  </script>
+
+</body>
+</html>
