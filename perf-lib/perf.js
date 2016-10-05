@@ -28,10 +28,10 @@ console._perf = function() {
     console.time('perf');
   }
   console.profile();
-  console.perf.time = performance.now();  
+  console.perf.time = performance.now();
 };
 
-console.perfEnd = function() {
+console.perfEnd = function(info) {
   // TODO(sorvell): WCR is unnecessarily delayed via setTimeout to workaround
   // https://code.google.com/p/chromium/issues/detail?id=425790.
   // This can add significant noise to benchmarking so avoid the wait
@@ -43,18 +43,18 @@ console.perfEnd = function() {
     // that will work if this function is called after the event has fired
     if (!CustomElements.ready) {
       addEventListener('WebComponentsReady', function() {
-        console._perfEnd();
-      });    
+        console._perfEnd(info);
+      });
     } else {
       CustomElements.takeRecords();
-      console._perfEnd();  
+      console._perfEnd(info);
     }
   } else {
-    console._perfEnd();
+    console._perfEnd(info);
   }
 };
 
-console._perfEnd = function() {
+console._perfEnd = function(info) {
   // force layout
   document.body.offsetWidth;
   var time = performance.now() - console.perf.time;
@@ -64,6 +64,6 @@ console._perfEnd = function() {
   }
   document.title = time.toFixed(1) + 'ms: ' + document.title;
   if (window.top !== window) {
-    window.top.postMessage(time + 'ms', '*');
+    window.top.postMessage({time: time + 'ms', info: info}, '*');
   }
 };
