@@ -17,33 +17,26 @@
                 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       }
 
-      :host([rating="1"]) > .one,
-      :host([rating="2"]) > .one,
-      :host([rating="3"]) > .one,
-      :host([rating="4"]) > .one,
-      :host([rating="5"]) > .one,
-      :host([rating="2"]) > .two,
-      :host([rating="3"]) > .two,
-      :host([rating="4"]) > .two,
-      :host([rating="5"]) > .two,
-      :host([rating="3"]) > .three,
-      :host([rating="4"]) > .three,
-      :host([rating="5"]) > .three,
-      :host([rating="4"]) > .four,
-      :host([rating="5"]) > .four,
-      :host([rating="5"]) > .five {
+      :host > span {
         color: goldenrod;
+      }
+
+      :host([rating="1"]) > span:nth-child(1) ~ span,
+      :host([rating="2"]) > span:nth-child(2) ~ span,
+      :host([rating="3"]) > span:nth-child(3) ~ span,
+      :host([rating="4"]) > span:nth-child(4) ~ span {
+        color: inherit;
       }
 
       span {
         padding: 4px 8px;
       }
     </style>
-    <span class="one">⭑</span>
-    <span class="two">⭑</span>
-    <span class="three">⭑</span>
-    <span class="four">⭑</span>
-    <span class="five">⭑</span>
+    <span>⭑</span>
+    <span>⭑</span>
+    <span>⭑</span>
+    <span>⭑</span>
+    <span>⭑</span>
   </template>
   <script>
     Polymer({
