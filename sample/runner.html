@@ -1,4 +1,13 @@
 <!doctype html>
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
 <html lang="en">
 <head>
 
@@ -20,10 +29,17 @@
   <frame-tester runs="25"></frame-tester>
 
   <script>
+
   addEventListener('WebComponentsReady', function() {
     document.querySelector('frame-tester').tests = [
-      'test1.html',
-      'test2.html'
+      // Use this approach to run specific tests.
+      //'test1.html',
+      //'test2.html',
+
+      // Use this approach to test a specific element by repeating it in the page.
+      'harness.html?wc-element=input',  /* the native input element */
+      'harness.html?wc-element=test1-element&wc-path=./elements/test1-element.html',
+      'harness.html?wc-element=test2-element&wc-path=./elements/test2-element.html'
     ];
   });
   </script>

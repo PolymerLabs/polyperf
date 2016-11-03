@@ -64,7 +64,7 @@ and call
 ```
 <script>
   console.perf();
-<script>
+</script>
 ```
 
 before the snippet of code to test, followed by
@@ -72,7 +72,7 @@ before the snippet of code to test, followed by
 ```
 <script>
    console.perfEnd();
-<script>
+</script>
 ```
 
 after the snippet of code to test.
