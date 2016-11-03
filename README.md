@@ -1,3 +1,5 @@
+# polyperf
+
 `polyperf` is a simple performance testing harness. It loads a series of target pages
 (each in their own iframe) a configurable number of times, and displays the successive run
 times, as well as the overall minimum.
@@ -14,9 +16,15 @@ Then navigate to  [http://localhost:8080/components/polyperf/sample/runner.html]
 
 <img width="469" alt="screen shot 2016-11-03 at 12 54 32" src="https://cloud.githubusercontent.com/assets/1369170/19982787/b20dee9e-a1c4-11e6-8d2b-d7f607eaeff9.png">
 
-The tests are run by `runner.html`, which defines the list of tests to run. Edit `runner.html` to choose test pages to run. There are two different ways to run a test:
+The tests are run by `runner.html`, which defines the list of tests to run. Edit `runner.html` to choose test pages to run, and how many times each test should be run. By default, each test is ran 25 times, but you can configure it by changing the `frame-tester`'s `runs` attribute:
 
-## Using the harness
+```
+<frame-tester runs="25"></frame-tester>
+```
+
+There are two different ways to configure your tests:
+
+### Using the harness
 Use this approach if you want to test the cost of
 an element by repeating it a number of times on the page (by default: 250 times).
 
@@ -40,7 +48,8 @@ the `wc-count` argument:
 `harness.html?wc-element=$name&wc-path=$path&wc-count=17`
 
 Note that the numbers displayed as a test result are the cummulative ones (i.e. how long the page with the repeated element took to run).
-## Using specific tests
+
+### Using specific tests
 Use this approach if you want to repeat a custom test that does something
 more than just repeating an element in a page.
 
