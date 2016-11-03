@@ -1,0 +1,64 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+<head>
+  <title>element tester</title>
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../bower_components/polymer/polymer.html">
+  <script src="../perf-lib/perf.js"></script>
+</head>
+<body>
+
+  <script>
+    var elementName = WebComponents.flags.element;
+    var elementPath = WebComponents.flags.path || '';
+    var elementCount = Number(WebComponents.flags.count) || 250;
+    var testDoc;
+
+    function test() {
+      var template = (testDoc && testDoc.querySelector('#test-template'))
+      if (!template) {
+        template = document.createElement('template');
+        var container = document.createElement('div');
+        container.appendChild(template.content.ownerDocument.createElement(elementName));
+        template.content.appendChild(container);
+      }
+      var container = document.createElement('div');
+      document.body.appendChild(container);
+      //
+      console.perf();
+      for (var i=0; i<elementCount; i++) {
+        document.body.appendChild(document.importNode(template.content, true));
+      }
+      var name = elementPath.split('/').pop()
+        .split('.').shift() || elementName;
+      console.perfEnd({name: name});
+    }
+
+    if (elementName) {
+      if (elementPath) {
+        var link = document.createElement('link');
+        link.rel = 'import';
+        link.href = elementPath;
+        link.addEventListener('load', function(e) {
+          testDoc = e.target.import;
+          requestAnimationFrame(test);
+        });
+        document.head.appendChild(link);
+      } else {
+        requestAnimationFrame(test);
+      }
+    }
+
+  </script>
+
+</body>
+</html>
