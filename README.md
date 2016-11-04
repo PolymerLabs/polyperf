@@ -12,7 +12,7 @@ and call
 ```html
 <script>
 console.perf();
-<script>
+</script>
 ```
 
 before code to test, followed by
@@ -20,7 +20,7 @@ before code to test, followed by
 ```html
 <script>
 console.perfEnd();
-<script>
+</script>
 ```
 
 after code to test.
