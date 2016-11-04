@@ -10,10 +10,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="test1-element">
-  <style>
-  </style>
   <template>
-    Test Element
+    <style></style>
+
+    Test Element 1
   </template>
 </dom-module>
 
@@ -21,7 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer({
     is: 'test1-element',
     ready: function() {
-      for (var i=0; i<10000; i++) {
+      for (var i=0; i<1000; i++) {
         this.fire('foo-bar');
       }
     }
