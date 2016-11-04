@@ -21,6 +21,8 @@
         color: goldenrod;
       }
 
+      :host(:not([rating])) > span,
+      :host([rating="0"]) > span,
       :host([rating="1"]) > span:nth-child(1) ~ span,
       :host([rating="2"]) > span:nth-child(2) ~ span,
       :host([rating="3"]) > span:nth-child(3) ~ span,
