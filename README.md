@@ -16,7 +16,7 @@ Then navigate to  [http://localhost:8080/components/polyperf/sample/runner.html]
 
 <img width="469" alt="screen shot 2016-11-03 at 12 54 32" src="https://cloud.githubusercontent.com/assets/1369170/19982787/b20dee9e-a1c4-11e6-8d2b-d7f607eaeff9.png">
 
-The tests are run by `runner.html`, which defines the list of tests to run. Edit `runner.html` to choose test pages to run, and how many times each test should be run. By default, each test is ran 25 times, but you can configure it by changing the `frame-tester`'s `runs` attribute:
+The tests are run by `runner.html`, which defines the list of tests to run. Edit `runner.html` to choose test pages to run, and how many times each test should be run. By default, each test runs 25 times, but you can configure it by changing the `frame-tester`'s `runs` attribute:
 
 ```
 <frame-tester runs="25"></frame-tester>
@@ -47,7 +47,7 @@ To configure the number of times the element is repeated in the page, use
 the `wc-count` argument:
 `harness.html?wc-element=$name&wc-path=$path&wc-count=17`
 
-Note that the numbers displayed as a test result are the cummulative ones (i.e. how long the page with the repeated element took to run).
+Note, the reported results are cummulative, i.e. how long the page with the repeated element took to run.
 
 ### Using specific tests
 Use this approach if you want to repeat a custom test that does something
