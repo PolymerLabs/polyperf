@@ -70,7 +70,7 @@ Where `test.1.html` is the specific webpage to test. Each test page should inclu
 
 and call
 
-```
+```html
 <script>
   console.perf();
 </script>
@@ -78,7 +78,7 @@ and call
 
 before the snippet of code to test, followed by
 
-```
+```html
 <script>
    console.perfEnd();
 </script>
